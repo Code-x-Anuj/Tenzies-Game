@@ -66,9 +66,13 @@ function App() {
       {gameWon && <Confetti /> }
       <div className="title-text">
         <h1 >Tenzies</h1>
-        <p className="instructions">Roll until all dice are the same. 
-          Click each die to freeze it at its current value between rolls.
-        </p>
+        {gameWon ? (
+      <h1 className="winning-text">🎉 Congratulations! You Won! 🎲🎊</h1>
+      ) : (
+      <p className="instructions">
+        Roll until all dice are the same. Click each die to freeze it at its current value between rolls.
+      </p>
+      )}
       </div>
 
       <div id="die">
