@@ -17,21 +17,29 @@ body {
 div#root {
   height: 100%;
   width: 100%;
+  min-width: 300px;
   max-height: 500px;
-  max-width: 800px;
+  max-width: 800px; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 main {
   background-color: #F5F5F5;
+  width: 90%;
+  min-width:380px;
   height: 100%;
   border-radius: 5px;
+  margin: 30px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   justify-content: space-evenly;
+  
 }
 .title-text{
+  min-width: 300px;
   font-size: 20px;
   display: flex;
   flex-direction: column;
@@ -51,7 +59,7 @@ main {
   grid-template-columns: repeat(5, 50px);
   row-gap: 30px;
   column-gap: 30px;
-
+  
 }
 #die button{
   height: 50px;
