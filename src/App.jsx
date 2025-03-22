@@ -7,7 +7,13 @@ function App() {
   const[dice, setDice] = React.useState(()=> generateAllNewDice())
   console.log(dice)
   const gameWon = dice.every(element=>(element.value===dice[0].value) && (element.isHeld===true) )
-  
+  // to focus keyboard on "New Game" button so that just click "spacebar" and new game start
+  const newGameRef = React.useRef(null)
+  React.useEffect(()=>{
+    if (gameWon && newGameRef.current) {
+      newGameRef.current.focus();
+    }
+  }, [gameWon])
   
   function generateAllNewDice() {
     return new Array(10)
@@ -17,7 +23,6 @@ function App() {
         }))
   }
  
-  
   function roll() {
     if (!gameWon) {
       setDice(
@@ -42,8 +47,6 @@ function App() {
       )
     )
   }
-
-  
   // console.log(numArray)
   
   const diceNum = dice.map((dieObj)=>{
@@ -55,11 +58,7 @@ function App() {
       id = {dieObj.id}
     />
   })
-  
   // console.log(diceNum)
-
-
-
 
   return (
     <main>
@@ -67,10 +66,11 @@ function App() {
       <div className="title-text">
         <h1 >Tenzies</h1>
         {gameWon ? (
-      <h1 className="winning-text">🎉 Congratulations! You Won! 🎲🎊</h1>
+      <h1 className="winning-text">🎉 Congratulations! You Won! 🎲🎊</h1> 
       ) : (
       <p className="instructions">
-        Roll until all dice are the same. Click each die to freeze it at its current value between rolls.
+        Roll until all dice are the same. 
+        Click each die to freeze it at its current value between rolls.
       </p>
       )}
       </div>
@@ -78,7 +78,9 @@ function App() {
       <div id="die">
       {diceNum }
       </div>
-      <button className="rollBtn" onClick={roll} >{gameWon ? "New Game" : "Roll"}</button>
+      <button className="rollBtn" onClick={roll} ref={newGameRef} >
+        {gameWon ? "New Game" : "Roll"}
+      </button>
       
     </main>
   )

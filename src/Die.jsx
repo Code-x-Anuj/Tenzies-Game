@@ -4,7 +4,12 @@ export default function(props) {
     return(
         <button 
             onClick={()=> (props.hold(props.id))} 
-            style={styles} >{props.value}
+            style={styles} 
+            aria-label={`Die with value ${props.value}, 
+            ${props.isHeld ? "held" : "not held"}`}
+            aria-pressed={props.isHeld}  
+        >
+                {props.value} 
         </button>
     )
 }
